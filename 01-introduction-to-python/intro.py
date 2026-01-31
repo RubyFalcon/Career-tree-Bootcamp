@@ -32,3 +32,30 @@ print(square(2))
 # lists - Mutable  objects [1,2,3,4,6]
 # tuples - Immutable objects (1,2,4,5)
 # set - unique objects {1,2,3,4,5}
+
+
+# Arithmetics
+x = 40
+y = 10
+
+print(x/y) # division (returns a float even if number is whole - 4.0)
+print(x // y) # floor division (returns a whole number rounded down  4)
+print(x % y) #modulo - returns remainder
+print (2 * 3) # multiply
+print(2 **3 ) # exponent 
+
+first_name = "Tupay"
+last_name = "Felkin"
+
+# concatenation
+print(first_name + " " + last_name)
+
+# operands +-/* / operators
+print(first_name * 10) #returns first name 10 times
+print(5 * 6)
+
+
+x,y,z =  1,3,7 # multiple assignments of variables
+
+#f-string
+print(f"My full name is {first_name} {last_name}")
