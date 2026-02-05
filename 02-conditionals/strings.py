@@ -36,3 +36,5 @@ print(str5[1:: 2])  #option 2 pythonic way
 # Q: reverse a string
 str6 = "palindrome" 
 print(str6[::-1]) # emordnilap
+
+# careful with -0, 
