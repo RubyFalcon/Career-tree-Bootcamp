@@ -48,7 +48,10 @@ first_name = "Tupay"
 last_name = "Felkin"
 
 # concatenation
+full_name = first_name + last_name
+print(full_name)
 print(first_name + " " + last_name)
+
 
 # operands +-/* / operators
 print(first_name * 10) #returns first name 10 times

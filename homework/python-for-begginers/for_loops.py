@@ -38,7 +38,9 @@ for x in range(4):
 
 numbers = [5,2,5,2,2]
 
-for number in numbers:
-    for x in range(number):
-        print("X")
-    print("\n")
+for x_count in numbers:
+    output = ""
+    for count in range(x_count):
+       output += "X"
+    print(output)
+
