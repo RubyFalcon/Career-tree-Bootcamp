@@ -36,8 +36,8 @@ for x in range(4):
 
 # Challenge: Print F with X's as a 2d array
 
-numbers = [5,2,5,2,2]
-
+numbers = [5,2,5,2,2] #for F
+numbers = [2,2,2,2,5] #for L
 for x_count in numbers:
     output = ""
     for count in range(x_count):
