@@ -36,3 +36,10 @@ print(position) # 3
 print(fruits.count("mango")) # 1 
 
 print(len(fruits)) # 6
+
+# adding 2 lists together
+fruits = ['apple', 'banana']
+more_fruits = ['orange', 'kiwi']
+combined_fruits = [*fruits, *more_fruits]
+
+print(combined_fruits)  # Output: ['apple', 'banana', 'orange', 'kiwi']
