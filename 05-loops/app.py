@@ -1,3 +1,4 @@
+from math import ceil, floor
 # Loops
 fruits = ["apple", "banana", "mango", "strawberry", "guava"]
 
@@ -42,3 +43,23 @@ for index, fruit in enumerate(fruits):
 # What if we want to start at a later number:
 for greaterindex, fruit in enumerate(fruits, start=15):
     print(f"{index}: {fruit}")
+
+# using 2 variables for loop dict:
+
+products = {
+    "Laptop": 99.9,
+    "Mouse": 45.5,
+    "Keyboard":120.5,
+    "Headphones": 200.0
+    }
+
+for product, price in products.items():
+    pass
+    # print(f"{product:<15} :${price:0.2f}") #products:<15  left allignspace in betweem, 0.2f 2 decimal places
+
+print(f"{'Total':<15} ${sum(products.values()):>8.2f}") #< - left align, > right align
+
+x = 78.18
+print(floor(x))
+print(ceil(x))
+print(round(x))
