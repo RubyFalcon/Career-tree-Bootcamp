@@ -103,20 +103,35 @@ else:
 
 # 02: password catcher
 
-max_attempts = 3
-password = "password1234"
+def password_catcher(password, max_attemps):
+    for attempt in range(1, max_attempts+1):
+        input_pass = input(f"Attempt {attempt}/ 3 - Type password: ")
+        if(input_pass == password):
+            print("Correct pass! Logged in.")
+            break
+        else: 
+            remaining = max_attempts - attempt
+            if remaining > 0:
+                print(f"Inccorect  password you have {remaining} attempts remaining.")
+    else:
+        print("Max attempts reached")
 
+# password_catcher(max_attempts = 3,password = "password1234")
+ 
+# While loops:
 
+# While vs for
 
-for attempt in range(1, max_attempts+1):
-    input_pass = input(f"Attempt {attempt}/ 3 - Type password: ")
-    if(input_pass == password):
-        print("Correct pass! Logged in.")
+# When number of iterations is KNOWN - for or while
+# When number of iterations UNKNOWN - use While only
+# When u dont know no. iterations, u cannot use for loop, u have to use while
+
+responses = ['hello','quit', 'more','less']
+
+index = 0
+while index < len(responses):
+    user_input = responses[index]
+    if user_input == 'quit':
+        print("Exiting...")
         break
-    else: 
-        remaining = max_attempts - attempt
-        if remaining > 0:
-            print(f"Inccorect  password you have {remaining} attempts remaining.")
-else:
-    print("Max attempts reached")
-
+    index += 1
