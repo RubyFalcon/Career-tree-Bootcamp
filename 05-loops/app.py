@@ -81,3 +81,42 @@ for day,subjects in classes.items():
     print(f"\n{day}:")
     for period, subject in enumerate(subjects, start=1):
         print(f"Period {period} : {classes[day]}")
+
+# 02:
+numbers = [1,3,5,7,8]
+
+for num in numbers:
+    if num % 2 == 0:
+        print(f"Found it: {num}")
+        break
+    print(f"{num} is odd, contunuing...")
+
+my_fruits = ["apple", "banana", "mango", "strawberry", "guava"]
+
+search = "cherry"
+for index, fruit in enumerate(fruits):
+    if fruits == search:
+        print(f"Found {fruit} at index {index}")
+else:
+    print(f"{search} not found")
+
+
+# 02: password catcher
+
+max_attempts = 3
+password = "password1234"
+
+
+
+for attempt in range(1, max_attempts+1):
+    input_pass = input(f"Attempt {attempt}/ 3 - Type password: ")
+    if(input_pass == password):
+        print("Correct pass! Logged in.")
+        break
+    else: 
+        remaining = max_attempts - attempt
+        if remaining > 0:
+            print(f"Inccorect  password you have {remaining} attempts remaining.")
+else:
+    print("Max attempts reached")
+
