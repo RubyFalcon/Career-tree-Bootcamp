@@ -1,4 +1,5 @@
 from math import ceil, floor
+from utils import print_matrix
 # Loops
 fruits = ["apple", "banana", "mango", "strawberry", "guava"]
 
@@ -63,3 +64,20 @@ x = 78.18
 print(floor(x))
 print(ceil(x))
 print(round(x))
+
+
+
+print_matrix(1,5)
+
+
+# 1: 
+classes = {
+    "Monday" : ["Maths", "Science", "English"],
+    "Tueday": ["History", "Maths", "Pe"],
+    "Wednesday ": ["Science", "English", "Art"]
+    }
+
+for day,subjects in classes.items():
+    print(f"\n{day}:")
+    for period, subject in enumerate(subjects, start=1):
+        print(f"Period {period} : {classes[day]}")
