@@ -103,7 +103,7 @@ else:
 
 # 02: password catcher
 
-def password_catcher(password, max_attemps):
+def password_catcher(password, max_attempts):
     for attempt in range(1, max_attempts+1):
         input_pass = input(f"Attempt {attempt}/ 3 - Type password: ")
         if(input_pass == password):
