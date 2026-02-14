@@ -1,4 +1,4 @@
-from utils import display_menu
+from utils import display_menu, input_command
 ### Step 1: Menu System (30 minutes)
 # Create the basic menu loop:
 # - Display menu options
@@ -9,14 +9,9 @@ from utils import display_menu
 
 def main()-> None:
     display_menu()
-    while True:
-        user_input = input("> ")
-        if user_input == "8":
-            print("Exiting program...")
-            break
-        elif user_input == "9":
-            display_menu()
-        else:
-            print("Invalid choice, please enter a number from 1 to 9")
+    input_command()
+
+        
+            
 
 main()
