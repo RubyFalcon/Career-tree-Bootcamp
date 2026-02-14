@@ -1,3 +1,4 @@
+import transactions
 def display_menu():
     print('''
 1. Add Income
@@ -19,16 +20,16 @@ def input_command():
         user_input = input("> ")
         match user_input:
                 case "1":
-                    # add_income()
-                    pass
+                    transactions.add_income()
+                
                 case "2":
-                    # add_expenses()
-                    pass
+                    transactions.add_expense()
+        
                 case "3":
-                    # view_all_transactions()
+                    transactions.view_all_transactions()
                     pass
                 case "4":
-                    # calculcate_summary()
+                    transactions.calculate_summary()
                     pass
                 case "5":
                     # view_by_category()
