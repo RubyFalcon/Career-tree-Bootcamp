@@ -126,7 +126,7 @@ def password_catcher(password, max_attempts):
 # When number of iterations UNKNOWN - use While only
 # When u dont know no. iterations, u cannot use for loop, u have to use while
 
-responses = ['hello','quit', 'more','less']
+responses:list[str] = ['hello','quit', 'more','less']
 
 index = 0
 while index < len(responses):
@@ -135,3 +135,5 @@ while index < len(responses):
         print("Exiting...")
         break
     index += 1
+
+

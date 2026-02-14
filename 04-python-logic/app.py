@@ -80,7 +80,7 @@ print(middle)
 print(last)
 
 # show tuples are immutable :
-# Erorr handle method so we don't break our code
+# Error handle method so we don't break our code
 print(id(f"Memory address: {numbers}"))
 try:
     numbers[0] = 15
