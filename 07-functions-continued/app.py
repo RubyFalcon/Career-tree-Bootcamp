@@ -44,4 +44,7 @@ else:
 finally: 
     f.close() #always runs
 
+def set_age(age:int):
+    if age < 0:
+        raise ValueError(f"Age cannot be negative: {age}")
 # hw: read about errors vs exceptions or watch a video about error handling
