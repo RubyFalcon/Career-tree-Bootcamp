@@ -7,18 +7,22 @@ finances = {
 # TODO: separate logic of add_income into get_income_input and add_income
 def add_income():
     """Add a new income transaction"""
-    category = input('Category - Salary, Freelance, Gift: \n> ').lower()
-  
-    if category == "salary" or category == "freelance" or category == "gift":
-        amount = input("Enter amount: £ \n> ")        
-        if float(amount) > 0:
-            converted_amount = float(amount)
-            finances["income"] += converted_amount
-            finances["transactions"].append({"transaction_type":"income","category": category, "amount": converted_amount})
+    
+    category = input('Category - Salary, Freelance, Gift: \n> ').lower().strip()
+    try:
+        if category == "salary" or category == "freelance" or category == "gift":
+            amount = input("Enter amount: £ \n> ")        
+            if float(amount) > 0:
+                converted_amount = float(amount)
+                finances["income"] += converted_amount
+                finances["transactions"].append({"transaction_type":"income","category": category, "amount": converted_amount})
+            else:
+                print("Amount was incorrect")
         else:
-            print("Amount was incorrect")
-    else:
-        print("wrong input")
+            print("wrong inpu")
+    except ValueError:
+        print("Invalid amount. Returning to menu")
+    # TODO: Save transaction with the correct category and amount
 
 def add_expense():
     amount = float(input("Enter an amount: £"))

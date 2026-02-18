@@ -76,3 +76,14 @@ def sum_nums(*nums:int) -> int:
     return total
 
 print(sum_nums(1,2,3,6))
+
+
+for x in range(11):
+    print(x, end=" ") #end = " " tells python to not createa a new line after each iteration and instead create a space
+print()
+# 01 : Create a func to gen phone num, (con code , area code)
+def get_phone(country, area, first, last):
+    return f"{country}--{area}--{first}--{last}"
+
+phone_num = get_phone(country=44,area=77,first=972,last=302)
+print(phone_num)
