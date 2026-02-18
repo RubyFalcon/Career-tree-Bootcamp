@@ -28,6 +28,8 @@ my_square = lambda y: y* y
 
 my_add = lambda *nums : sum(nums)
 
+# lambda should be used inside other function calls and not to create a named anonymous function (PEP 8)
+
 print(my_add(1,2,3))
 
 # try except finally
@@ -48,3 +50,19 @@ def set_age(age:int):
     if age < 0:
         raise ValueError(f"Age cannot be negative: {age}")
 # hw: read about errors vs exceptions or watch a video about error handling
+
+def divide_100_by_input():
+    try:
+        raw_number = input("Enter a numer to divide zero by: ")
+        number = raw_number
+        result = 100 / number
+    except ValueError:
+        print(f"{raw_number} is not a valid number")
+    except ZeroDivisionError:
+        print("Cannot dive by 0")
+    except Exception as e:
+        print(f"Unexpect error occured: {e}")
+    else:
+        print("got here")
+    finally:
+        print(f"operation complete: {result}" )
