@@ -29,3 +29,19 @@ my_square = lambda y: y* y
 my_add = lambda *nums : sum(nums)
 
 print(my_add(1,2,3))
+
+# try except finally
+
+try: 
+    f = open("data.txt")
+    my_data = f.read()
+except FileNotFoundError:
+    print("File missing!!")
+else:
+    #if no exceptsions were raised
+    # process(my_data) 
+    pass
+finally: 
+    f.close() #always runs
+
+# hw: read about errors vs exceptions or watch a video about error handling
