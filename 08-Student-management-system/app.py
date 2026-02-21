@@ -55,7 +55,7 @@ class School:
             if student_id == student.id:
                 return student
         else:
-            return None
+            return "Student does not exist"
         
     def add_student_score(self,student_id,subject,score):
         student = self.find_student_by_id(student_id)
@@ -64,11 +64,12 @@ class School:
         else:
             print("Student not found")
             return
-    def find_student_by_name(self, name):
+    def find_student_by_name(self, name:str):
+        name = name.strip().lower()
         return [ student for student in self.students
-                if student.first_name.lower() == name.lower()]
+                if student.first_name.lower() == name]
     
-    def get_average_score(self, student_id):
+    def get_average_scores(self, student_id):
         student = self.find_student_by_id(student_id)
         if student is None:
             print("Student not found")
@@ -80,13 +81,20 @@ class School:
         if not students_with_scores:
             return None
         return max(students_with_scores, key=lambda s:sum(s.scores.values())/ len(s.scores))
+    
+    def remove_student(self, student_id):
+        for i, student in enumerate(self.students):
+            if student.id == student_id:
+                removed = self.students.pop(i)
+                print(f"Removed student {removed.first_name} {removed.last_name}")
+                return removed
+        print("Student not found")
+        return None
 
 
 
 def main():
-    print("got here")
     my_school = School()
-
     my_school.add_student(Student(1,"John","Doe", 16, "123 Adress", 11,"maths", "english"))
     my_school.add_student(Student(1,"John","Smith", 13, "123 Adress", 8,"maths", "english"))
     my_school.add_student(Student(2,"Joe","Weller",15,"145 Address", 10,"Economics", "English",))
@@ -96,12 +104,15 @@ def main():
     my_school.find_student_by_id(1)
     my_school.add_student_score(1,"Maths", 90)
     my_school.add_student_score(1,"English", 60)
-    # print(my_school.find_student_by_id(1).scores)
    
-    print(my_school.find_student_by_name("John"))
-    print(my_school.get_average_scores(1))
-    my_school.display_students()
-    print(my_school.get_top_student())
+    print(my_school.find_student_by_id(1))
+   
+    matches = my_school.find_student_by_name("John")
+    for s in matches:
+        print(s)
+    # print(my_school.get_average_scores(1))
+    # my_school.display_students()
+    # print(my_school.get_top_student())
 if __name__ == "__main__": #name= main means we are running this specific python file
     main()
 
