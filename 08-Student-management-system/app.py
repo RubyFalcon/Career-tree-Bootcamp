@@ -12,6 +12,34 @@ class School:
     
     def get_students(self):
         return self.students
+    
+    def display_students(self):
+        if not self.students:
+            print("No students found.")
+            return
+
+        headers = ["ID", "First", "Last", "Age", "Year", "Address"]
+        rows = [
+            [s.id, s.first_name, s.last_name, s.age, s.school_year, s.address]
+            for s in self.students
+        ]
+
+        # column widths = max of header/values per column
+        col_widths = []
+        for col_idx in range(len(headers)):
+            col_widths.append(
+            max(len(str(headers[col_idx])), max(len(str(r[col_idx])) for r in rows))
+            )
+
+        def fmt_row(row):
+            return " | ".join(str(val).ljust(col_widths[i]) for i, val in enumerate(row))
+
+        line = "-+-".join("-" * w for w in col_widths)
+
+        print(fmt_row(headers))
+        print(line)
+        for r in rows:
+            print(fmt_row(r))
     def find_student_by_id(self, student_id):
         for student in self.students:
             if student_id == student.id:
@@ -57,8 +85,10 @@ def main():
     my_school.add_student_score(1,"Maths", 90)
     my_school.add_student_score(1,"English", 60)
     # print(my_school.find_student_by_id(1).scores)
+   
     print(my_school.find_student_by_name("John"))
     print(my_school.get_average_scores(1))
+    my_school.display_students()
 if __name__ == "__main__": #name= main means we are running this specific python file
     main()
 
