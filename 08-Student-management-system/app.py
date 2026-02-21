@@ -22,15 +22,21 @@ class School:
     def get_students(self):
         return list(self.students.values())
     
-    def display_students(self):
-        if not self.students:
+    def display_students(self, students=None):
+        students = (
+            self.students.values() if students is None else students
+        )
+
+        students = list(students)
+
+        if not students:
             print("No students found.")
             return
 
         headers = ["ID", "First", "Last", "Age", "Year", "Avg Score","Address"]
 
         rows = []
-        for s in self.students:
+        for s in students:
             avg = sum(s.scores.values()) / len(s.scores) if s.scores else 0
             rows.append([
                 s.id,
@@ -82,10 +88,10 @@ class School:
         return student.get_average_score()
     
     def get_top_student(self):
-        students_with_scores = [s for s in self.students if s.scores]
+        students_with_scores = [s for s in self.students.values() if s.scores]
         if not students_with_scores:
             return None
-        return max(students_with_scores, key=lambda s:sum(s.scores.values())/ len(s.scores))
+        return max(students_with_scores, key=lambda s: s.get_average_score())
     
 
 
@@ -109,11 +115,9 @@ def main():
     for s in matches:
         print(s)
     # print(my_school.get_average_scores(1))
-    # my_school.display_students()
-    # print(my_school.get_top_student())
+    my_school.display_students()
+    print(my_school.get_top_student())
 if __name__ == "__main__": #name= main means we are running this specific python file
     main()
 
 
-
-#find the top scorer from school
