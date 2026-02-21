@@ -18,11 +18,20 @@ class School:
             print("No students found.")
             return
 
-        headers = ["ID", "First", "Last", "Age", "Year", "Address"]
-        rows = [
-            [s.id, s.first_name, s.last_name, s.age, s.school_year, s.address]
-            for s in self.students
-        ]
+        headers = ["ID", "First", "Last", "Age", "Year", "Avg Score","Address"]
+
+        rows = []
+        for s in self.students:
+            avg = sum(s.scores.values()) / len(s.scores) if s.scores else 0
+            rows.append([
+                s.id,
+                s.first_name,
+                s.last_name,
+                s.age,
+                s.school_year,
+                f"{avg:.2f}",  # formatted average
+                s.address,
+            ])
 
         # column widths = max of header/values per column
         col_widths = []
@@ -34,12 +43,13 @@ class School:
         def fmt_row(row):
             return " | ".join(str(val).ljust(col_widths[i]) for i, val in enumerate(row))
 
-        line = "-+-".join("-" * w for w in col_widths)
 
+        line = "-+-".join("-" * w for w in col_widths)
         print(fmt_row(headers))
         print(line)
         for r in rows:
             print(fmt_row(r))
+            
     def find_student_by_id(self, student_id):
         for student in self.students:
             if student_id == student.id:
@@ -57,18 +67,20 @@ class School:
     def find_student_by_name(self, name):
         return [ student for student in self.students
                 if student.first_name.lower() == name.lower()]
-    def get_average_scores(self, student_id):
+    
+    def get_average_score(self, student_id):
         student = self.find_student_by_id(student_id)
         if student is None:
             print("Student not found")
             return None
+        return student.get_average_score()
+    
+    def get_top_student(self):
+        students_with_scores = [s for s in self.students if s.scores]
+        if not students_with_scores:
+            return None
+        return max(students_with_scores, key=lambda s:sum(s.scores.values())/ len(s.scores))
 
-        if not student.scores:  
-            return 0
-
-        total = sum(student.scores.values())
-        count = len(student.scores)
-        return f"{student.first_name}'s average score is : {total / count}"
 
 
 def main():
@@ -89,9 +101,10 @@ def main():
     print(my_school.find_student_by_name("John"))
     print(my_school.get_average_scores(1))
     my_school.display_students()
+    print(my_school.get_top_student())
 if __name__ == "__main__": #name= main means we are running this specific python file
     main()
 
 
 
-# find a student by name - match all names
+#find the top scorer from school
