@@ -4,14 +4,23 @@
 from student import Student
 
 class School:
-    def __init__(self, students: list[Student] | None = None):
-        self.students = students if students is not None else []
+    def __init__(self, students: dict[Student] | None = None):
+        self.students = students if students is not None else {}
 
     def add_student(self,student:Student):
-        self.students.append(student)
-    
+        if student.id in self.students:
+            print("Student already exists")
+            return
+        self.students[student.id] = student
+    def remove_student(self, student_id):
+        removed = self.students.pop(student_id, None)
+        if removed is None:                          
+            print("Student not found")
+        else:
+            print(f"{removed.first_name} was removed")
+        return removed
     def get_students(self):
-        return self.students
+        return list(self.students.values())
     
     def display_students(self):
         if not self.students:
@@ -51,11 +60,7 @@ class School:
             print(fmt_row(r))
             
     def find_student_by_id(self, student_id):
-        for student in self.students:
-            if student_id == student.id:
-                return student
-        else:
-            return "Student does not exist"
+        return self.students.get(student_id)
         
     def add_student_score(self,student_id,subject,score):
         student = self.find_student_by_id(student_id)
@@ -64,10 +69,10 @@ class School:
         else:
             print("Student not found")
             return
+        
     def find_student_by_name(self, name:str):
         name = name.strip().lower()
-        return [ student for student in self.students
-                if student.first_name.lower() == name]
+        return [s for s in self.students.values() if s.first_name.lower() == name]
     
     def get_average_scores(self, student_id):
         student = self.find_student_by_id(student_id)
@@ -82,14 +87,7 @@ class School:
             return None
         return max(students_with_scores, key=lambda s:sum(s.scores.values())/ len(s.scores))
     
-    def remove_student(self, student_id):
-        for i, student in enumerate(self.students):
-            if student.id == student_id:
-                removed = self.students.pop(i)
-                print(f"Removed student {removed.first_name} {removed.last_name}")
-                return removed
-        print("Student not found")
-        return None
+
 
 
 
