@@ -1,4 +1,5 @@
 import transactions
+
 def display_menu():
     print('''
 1. Add Income
@@ -14,6 +15,7 @@ def display_menu():
 ''')
     
 def input_command():
+    transactions.load_transactions()
     '''gets an input from 1-9 in order to run some commands'''
     while True:
         print("=" * 50)
