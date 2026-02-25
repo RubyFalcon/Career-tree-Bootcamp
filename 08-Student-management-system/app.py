@@ -93,6 +93,19 @@ class School:
             return None
         return max(students_with_scores, key=lambda s: s.get_average_score())
     
+    def update_student(self, student_id, **updates):
+        student = self.find_student_by_id(student_id)
+        if student is None:
+            print("Student not found")
+            return False
+
+        try:
+            student.update(**updates)
+            return True
+        except (TypeError, ValueError) as e:
+            print(e)
+            return False
+    
 
 
 
