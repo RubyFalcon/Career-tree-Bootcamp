@@ -8,6 +8,11 @@ from car import Car
 car1 = Car("Bmw", 1995,"Blue", False)
 car2 = Car("Mustang", 1995,"Blue", False)
 car3 = Car("Bmw", 1995,"Blue", False)
-car4 = Car()
+
 
 print(car1.color)
+
+car1.drive()
+car1.stop()
+
+car1.describe()
