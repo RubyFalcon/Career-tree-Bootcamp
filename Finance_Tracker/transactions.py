@@ -12,10 +12,15 @@ finances = {
 # TODO: separate logic of add_income into get_income_input and add_income
 
 def load_transactions(filename=DATA_FILE):
-    """Load transactions from file into memory"""
-    if not os.path.exists(filename):
-        return  # no file yet — nothing to load
 
+    # 1) reset memory state (so calling twice doesn't double totals)
+    finances["income"] = 0
+    finances["expenses"] = 0
+    finances["transactions"] = []
+
+    # 2) if file doesn't exist yet, we’re done (defaults remain 0 / empty)
+    if not os.path.exists(filename):
+        return
     with open(filename, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
