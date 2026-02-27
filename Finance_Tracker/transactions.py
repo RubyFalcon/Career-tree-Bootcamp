@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 DATA_FILE = "transactions.txt"
+BUDGET_FILE = "budget.txt"
 finances = {
     "income": 0,
     "expenses": 0,
@@ -44,6 +45,19 @@ def load_transactions(filename=DATA_FILE):
                 finances["income"] += amount
             elif t_type == "expense":
                 finances["expenses"] += amount
+
+def load_budget(filename=BUDGET_FILE):
+    """Load monthly budget from file if it exists."""
+    if not os.path.exists(filename):
+        finances["monthly_budget"] = None
+        return
+
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            value = f.read().strip()
+            finances["monthly_budget"] = float(value) if value else None
+    except (ValueError, OSError):
+        finances["monthly_budget"] = None
 
 # save transactions
 def save_transaction(transaction_type, category, converted_amount: float, filename=DATA_FILE, timestamp = None):
@@ -162,7 +176,14 @@ def view_all_transactions():
         print(format_row(r))
 
 def calculate_summary():
-    print(f"Our total is £{finances['income'] - finances['expenses']}")
+    balance = finances["income"] - finances["expenses"]
+    print(f"Our total is £{balance:.2f}")
+
+    budget = finances.get("monthly_budget")
+    if budget is not None:
+        remaining = budget - finances["expenses"]
+        print(f"Monthly budget : £{budget:.2f}")
+        print(f"Budget remaining: £{remaining:.2f}")
 
 def view_by_category():
     # Optional: ensure you’re looking at the latest data from file
@@ -206,12 +227,12 @@ def clear_all_data(filename=DATA_FILE):
         print("Clear cancelled.")
         return
 
-    # 1️⃣ Reset in-memory state
+    # 1️ Reset in-memory state
     finances["income"] = 0
     finances["expenses"] = 0
     finances["transactions"] = []
 
-    # 2️⃣ Clear file safely (truncate)
+    # 2️ Clear file safely (truncate)
     try:
         with open(filename, "w", encoding="utf-8") as f:
             pass  # opening in "w" mode empties the file
@@ -220,6 +241,26 @@ def clear_all_data(filename=DATA_FILE):
         return
 
     print("✅ All financial data has been cleared.")
-def set_budget():
-    pass
+
+def set_budget(filename=BUDGET_FILE):
+    """Set or update the monthly budget."""
+    try:
+        amount = input("Enter monthly budget: £\n> ").strip()
+        budget = float(amount)
+
+        if budget <= 0:
+            print("Budget must be greater than 0.")
+            return
+
+        # update memory
+        finances["monthly_budget"] = budget
+
+        # persist (overwrite — single source of truth)
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(f"{budget:.2f}")
+
+        print(f"✅ Monthly budget set to £{budget:.2f}")
+
+    except ValueError:
+        print("Invalid budget amount.")
 

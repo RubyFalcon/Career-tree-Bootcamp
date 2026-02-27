@@ -36,7 +36,7 @@ def input_command():
                     transactions.view_by_category()
                     pass
                 case "6":
-                    # set_budget()
+                    transactions.set_budget()
                     pass
                 case "7":
                     transactions.clear_all_data()
