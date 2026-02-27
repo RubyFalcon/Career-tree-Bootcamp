@@ -74,6 +74,9 @@ def save_transaction(transaction_type, category, converted_amount: float, filena
     print(f"{transaction_type} of £{converted_amount:.2f} recorded successfully")
     return timestamp
 
+
+MAX_INCOME  = 1_000_000
+LARGE_TRANSACTION_THRESHOLD = 10_000
 def add_income():
     """Add a new income transaction"""
     categories = ["salary", "freelance", "gift"]
@@ -90,7 +93,19 @@ def add_income():
         if converted_amount <= 0:
             print("Amount was incorrect")
             return
+        if converted_amount > MAX_INCOME:
+            print(f"Amount must be £{MAX_INCOME:,.2f} or less.")
+            return
+        if converted_amount > LARGE_TRANSACTION_THRESHOLD:
+            confirm = input(
+            f"⚠️  This is a large income (£{converted_amount:,.2f}). Continue? (y/n): "
+            ).strip().lower()
 
+            if confirm not in ("y", "yes"):
+                print("Income entry cancelled.")
+                return
+
+        
         # Save first, reuse the exact timestamp
         timestamp = save_transaction("income", category, converted_amount)
 
