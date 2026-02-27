@@ -1,24 +1,25 @@
 import transactions
 
 def display_menu():
-    print('''
-1. Add Income
-2. Add Expense
-3. View All Transactions
-4. View Summary
-5. View by Category
-6. Set Monthly Budget
-7. Clear All Data
-8. Exit
-9. Help
-
-''')
+    print("\n" + "=" * 40)
+    print("         💰 Finance Tracker")
+    print("=" * 40)
+    print("1) Add Income")
+    print("2) Add Expense")
+    print("3) View All Transactions")
+    print("4) View Summary")
+    print("5) View by Category")
+    print("6) Set Monthly Budget")
+    print("7) Clear All Data")
+    print("8) Exit")
+    print("9) Help")
+    print("=" * 40)
     
-def input_command():
+def input_command():   
     '''gets an input from 1-9 in order to run some commands'''
     while True:
-        print("=" * 50)
-        user_input = input("> ")
+        print("\n"+ "=" * 50)
+        user_input = input("Choose an option (1-9): ").strip()
         match user_input:
                 case "1":
                     transactions.add_income()
@@ -28,23 +29,27 @@ def input_command():
         
                 case "3":
                     transactions.view_all_transactions()
-                    pass
+                    
                 case "4":
                     transactions.calculate_summary()
-                    pass
+                    
                 case "5":
                     transactions.view_by_category()
-                    pass
+                    
                 case "6":
                     transactions.set_budget()
-                    pass
+                    
                 case "7":
                     transactions.clear_all_data()
-                    pass
+                    
                 case "8":
                     print("Exiting program...")
                     break
+            
                 case "9":
                     display_menu()
+
                 case _:
                     print("Invalid choice, please enter a number from 1 to 9")
+
+        display_menu()

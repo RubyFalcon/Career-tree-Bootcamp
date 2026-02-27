@@ -240,7 +240,6 @@ def clear_all_data(filename=DATA_FILE):
     if confirm != "YES":
         print("Clear cancelled.")
         return
-
     # 1️ Reset in-memory state
     finances["income"] = 0
     finances["expenses"] = 0
