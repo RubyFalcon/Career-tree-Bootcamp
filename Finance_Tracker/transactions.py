@@ -103,8 +103,38 @@ def view_all_transactions():
 def calculate_summary():
     print(f"Our total is £{finances['income'] - finances['expenses']}")
 
-def view_by_cagegory():
-    pass
+def view_by_category():
+    # Optional: ensure you’re looking at the latest data from file
+    # load_transactions()
+    category = input("Enter category: \n> ").lower().strip()
+
+    matches = [t for t in finances["transactions"] if t.get("category") == category]
+
+    if not matches:
+        print(f"No transactions found for category: {category}")
+        return
+
+    income_total = 0.0
+    expense_total = 0.0
+
+    print(f"\nTransactions for category: {category}\n" + "-" * 50)
+    for t in matches:
+        t_type = t.get("transaction_type")
+        amount = float(t.get("amount", 0))
+        timestamp = t.get("timestamp", "N/A")
+
+        if t_type == "income":
+            income_total += amount
+        elif t_type == "expense":
+            expense_total += amount
+
+        print(f"{timestamp} | {t_type:<7} | £{amount:.2f}")
+
+    print("-" * 50)
+    print(f"Income total : £{income_total:.2f}")
+    print(f"Expense total: £{expense_total:.2f}")
+    print(f"Net          : £{income_total - expense_total:.2f}\n")
+
 def set_budget():
     pass
 

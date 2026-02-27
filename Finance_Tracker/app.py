@@ -1,4 +1,5 @@
 from utils import display_menu, input_command
+from transactions import load_transactions
 ### Step 1: Menu System (30 minutes)
 # Create the basic menu loop:
 # - Display menu options
@@ -8,10 +9,11 @@ from utils import display_menu, input_command
 
 
 def main()-> None:
+    load_transactions()
     display_menu()
     input_command()
 
         
             
-
-main()
+if __name__ == "__main__":
+    main()
