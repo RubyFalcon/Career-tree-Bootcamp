@@ -92,13 +92,47 @@ def add_expense():
                 converted_amount = float(amount)
                 finances["expenses"] += converted_amount
                 finances["transactions"].append({"transaction_type":"expense","category": category, "amount": converted_amount})
-                save_transaction("expense", category, amount)
+                save_transaction("expense", category, converted_amount)
     except ValueError:
         print("Invalid amount. Returning to menu")
     
 def view_all_transactions():
-    for transaction in finances["transactions"]:
-        print(transaction)
+    txs = finances["transactions"]
+
+    if not txs:
+        print("No transactions yet.")
+        return
+
+    # Column headers
+    headers = ["#", "Date/Time", "Type", "Category", "Amount (£)"]
+
+    # Build rows
+    rows = []
+    for i, t in enumerate(txs, start=1):
+        timestamp = t.get("timestamp", "N/A")
+        t_type = t.get("transaction_type", "N/A")
+        category = t.get("category", "N/A")
+        amount = float(t.get("amount", 0.0))
+        rows.append([str(i), timestamp, t_type, category, f"{amount:.2f}"])
+
+    # Compute column widths (max of header vs all rows)
+    col_widths = []
+    for col_idx in range(len(headers)):
+        max_len = len(headers[col_idx])
+        for r in rows:
+            max_len = max(max_len, len(r[col_idx]))
+        col_widths.append(max_len)
+
+    def format_row(values:str):
+        return " | ".join(v.ljust(col_widths[i]) for i, v in enumerate(values))
+
+    separator = "-+-".join("-" * w for w in col_widths)
+
+    # Print table
+    print(format_row(headers))
+    print(separator)
+    for r in rows:
+        print(format_row(r))
 
 def calculate_summary():
     print(f"Our total is £{finances['income'] - finances['expenses']}")
