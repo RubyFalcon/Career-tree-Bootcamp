@@ -135,6 +135,30 @@ def view_by_category():
     print(f"Expense total: £{expense_total:.2f}")
     print(f"Net          : £{income_total - expense_total:.2f}\n")
 
+def clear_all_data(filename=DATA_FILE):
+    """Clear all transaction data safely."""
+    confirm = input(
+        "⚠️ This will delete ALL transaction data. Type 'YES' to confirm:\n> "
+    ).strip()
+
+    if confirm != "YES":
+        print("Clear cancelled.")
+        return
+
+    # 1️⃣ Reset in-memory state
+    finances["income"] = 0
+    finances["expenses"] = 0
+    finances["transactions"] = []
+
+    # 2️⃣ Clear file safely (truncate)
+    try:
+        with open(filename, "w", encoding="utf-8") as f:
+            pass  # opening in "w" mode empties the file
+    except OSError as e:
+        print(f"Warning: could not clear file: {e}")
+        return
+
+    print("✅ All financial data has been cleared.")
 def set_budget():
     pass
 
