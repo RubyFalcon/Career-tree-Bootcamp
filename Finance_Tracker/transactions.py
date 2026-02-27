@@ -176,15 +176,29 @@ def view_all_transactions():
         print(format_row(r))
 
 def calculate_summary():
-    balance = finances["income"] - finances["expenses"]
-    print(f"Our total is £{balance:.2f}")
+    income = finances["income"]
+    expenses = finances["expenses"]
+    balance = income - expenses
 
+    # ---- main summary ----
+    print("\nFinancial Summary")
+    print("-" * 40)
+
+    print(f"{'Total Income:':<18} £{income:,.2f}")
+    print(f"{'Total Expenses:':<18} £{expenses:,.2f}")
+    print(f"{'Current Balance:':<18} £{balance:,.2f}")
+
+    # ---- optional budget section ----
     budget = finances.get("monthly_budget")
     if budget is not None:
-        remaining = budget - finances["expenses"]
-        print(f"Monthly budget : £{budget:.2f}")
-        print(f"Budget remaining: £{remaining:.2f}")
+        remaining = budget - expenses
+        print("-" * 40)
+        print(f"{'Monthly Budget:':<18} £{budget:,.2f}")
+        print(f"{'Budget Remaining:':<18} £{remaining:,.2f}")
+        if remaining < 0:
+            print("⚠️  You are over your monthly budget!")
 
+    print()  # trailing newline
 def view_by_category():
     # Optional: ensure you’re looking at the latest data from file
     # load_transactions()
