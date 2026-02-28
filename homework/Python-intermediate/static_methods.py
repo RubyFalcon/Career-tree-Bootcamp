@@ -17,3 +17,12 @@ class Employee:
         valid_position = ["Manager","Cashier","Cook", "Janitor"]
         return position in valid_position #using membership operator
 
+
+employee1 = Employee("Eugene", "Manager")
+employee2 = Employee("Squidward", "Cashier")
+employee3 = Employee("Spongebob", "Cook")
+print(Employee.is_valid_position("Rocket Scientist"))
+
+employee1.get_info()
+employee2.get_info()
+employee3.get_info()
