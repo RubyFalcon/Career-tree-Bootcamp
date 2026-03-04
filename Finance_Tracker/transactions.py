@@ -137,7 +137,7 @@ def add_expense():
         if converted_amount <= 0:
             print("Amount was incorrect")
             return
-
+        # TODO: add another category other later
         # Save first and capture the exact timestamp used
         timestamp = save_transaction("expense", category, converted_amount)
 
