@@ -8,20 +8,22 @@
   </head>
   <body>
     <div class="quiz-box">
-      <h1>Interactive Quix</h1>
-      <p>Andwer the questions and test your dev knowledge</p>
-      <button id="theme-btn">Toggle Dark Mode</button>
+      <h1>Interactive Quiz</h1>
+      <p>Answer the questions and test your dev knowledge</p>
+      <button id="theme-btn" class="orange-btn">Toggle Dark Mode</button>
 
       <div class="quiz-area">
+        <p id="progress"></p>
         <h2 id="question">Question goes here</h2>
         <div id="answers"></div>
+        <p id="feedback"></p>
         <p id="score">Score: 0</p>
-        <button id="next-btn">Next Question</button>
+        <button id="next-btn" class="orange-btn">Next Question</button>
       </div>
       <div id="result-box">
         <h2>Quiz Finished</h2>
         <p id="final-score"></p>
-        <button id="restart-btn">Restart Quiz</button>
+        <button id="restart-btn" class="orange-btn">Restart Quiz</button>
       </div>
     </div>
     <script src="./script.js"></script>
