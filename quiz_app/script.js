@@ -60,7 +60,7 @@ const restartBtn = document.querySelector("#restart-btn")
 
 let questionIndex = 0
 let score = 0
-questionEl.textContent = questions[questionIndex].question
+// questionEl.textContent = questions[questionIndex].question
 function startQuiz() {
     questionIndex = 0
     score = 0
@@ -74,23 +74,24 @@ function startQuiz() {
 function showQuestions(){
     answerEl.innerHTML = ""
     feedbackEl.textContent = ""
-    const currentQuestion = question[questionIndex]
-    questionEl.textContent = currentQuestion
+    const currentQuestion = questions[questionIndex]
+    questionEl.textContent = currentQuestion.question
     progressEl.textContent = `Question ${questionIndex + 1} of ${questions.length}`
-    // currentQuestion.answers.forEach(answer => {
-    //     const button = document.createElement("button")
-    //     button.textContent = answer.text
-    //     button.classList.add("answer-btn")
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button")
+        button.textContent = answer.text
+        button.classList.add("answer-btn")
 
-    //     if (answer.correct) {
-    //         button.dataset.correct
+        if (answer.correct) {
+            button.dataset.correct
 
-    //     }
-    //     button.addEventListener("click", ()=> console.log("well done")
-    //     )
+        }
+        button.addEventListener("click", ()=> console.log("well done") 
+        // we will replace log with a new function  
+        )
 
-    //     answerEl.appendChild(button)
-    // });
+        answerEl.appendChild(button)
+    });
 }
 
 startQuiz()

@@ -35,6 +35,20 @@ h1 {
     margin-right: 10px;
     cursor: pointer;
 }
+.answer-btn {
+    margin: 0 auto;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(0, 165, 255);
+    color: white;
+    font-size: 12px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.answer-btn:hover {
+    background-color: rgb(0, 145, 255);
+}
 
 .orange-btn:hover {
     background-color: darkorange;
