@@ -1,0 +1,40 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Shopping",
+      "priority": "Low",
+      "done": false,
+      "tags": [],
+      "type": "Task"
+    },
+    {
+      "id": 2,
+      "title": "Grab a meal",
+      "priority": "Low",
+      "done": false,
+      "tags": [],
+      "type": "Task"
+    },
+    {
+      "id": 3,
+      "title": "Shopping",
+      "priority": "Low",
+      "done": false,
+      "tags": [],
+      "type": "Task"
+    },
+    {
+      "id": 4,
+      "title": "Grab a meal",
+      "priority": "Low",
+      "done": false,
+      "tags": [],
+      "type": "Task"
+    }
+  ],
+  "meta": {
+    "total": 4,
+    "done": 0
+  }
+}
