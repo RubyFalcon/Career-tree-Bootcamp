@@ -64,7 +64,7 @@ let score = 0
 function startQuiz() {
     questionIndex = 0
     score = 0
-    scoreEl.textContent = "Score: 0"
+    scoreEl.textContent = `Score : ${score}`
     scoreEl.style.display = "block"
     quizArea.style.display = "block"
     resultBox.style.display = "none"
@@ -83,24 +83,54 @@ function showQuestions(){
         button.classList.add("answer-btn")
 
         if (answer.correct) {
-            button.dataset.correct
+            button.dataset.correct = "true"
 
         }
-        button.addEventListener("click", ()=> console.log("well done") 
-        // we will replace log with a new function  
-        )
-
+        button.addEventListener("click", selectAnswer )
         answerEl.appendChild(button)
     });
 }
+function selectAnswer(event){
+    const selectedButton = event.target
+    const isCorrect = selectedButton.dataset.correct === "true"
+    if (isCorrect) {
+        selectedButton.classList.add("correct")
+        feedbackEl.textContent = "Correct"
+        score++
+        scoreEl.textContent = `Score ${score}`
+    } else {
+        selectedButton.classList.add("incorrect")
+        feedbackEl.textContent = "Wrong answer"
+
+    }
+    const allButtons = answerEl.querySelectorAll("button")
+    allButtons.forEach(function (button) {
+        if (button.dataset.correct == "true") {
+            button.classList.add("correct")
+        }
+        button.disabled = true
+    })
+}
+function nextQuestion() {
+    questionIndex ++
+    if (questionIndex < questions.length) {
+        showQuestions()
+    } else {
+        showResult()
+    }
+}
+
+function showResult() {
+    quizArea.style.display = 'none'
+    resultBox.style.display = 'block'
+    finalScoreEl.textContent = `You scored ${score} out of ${questions.length}.`
+}
+
+nextBtn.addEventListener("click", nextQuestion)
+restartBtn.addEventListener("click", startQuiz)
+
+themeBtn.addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode")
+})
 
 startQuiz()
-nextBtn.addEventListener("click", ()=> {
-    questionIndex++
-    questionEl.textContent = questions[questionIndex].question
-})
-
-restartBtn.addEventListener("click", ()=> {
-    questionIndex = 0
-    questionEl.textContent = questions[questionIndex].question
-})
