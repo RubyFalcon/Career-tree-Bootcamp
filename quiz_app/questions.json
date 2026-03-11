@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What does HTML stand for?",
+    "answers": [
+      { "text": "Hyper Text Markup Language", "correct": true },
+      { "text": "Home Tool Markup Language", "correct": false },
+      { "text": "High Tech Main Language", "correct": false }
+    ]
+  },
+  {
+    "question": "Which language is used to style webpages?",
+    "answers": [
+      { "text": "CSS", "correct": true },
+      { "text": "HTML", "correct": false },
+      { "text": "Python", "correct": false }
+    ]
+  },
+  {
+    "question": "Which language adds interactivity to webpages?",
+    "answers": [
+      { "text": "JavaScript", "correct": true },
+      { "text": "CSS", "correct": false },
+      { "text": "HTML", "correct": false }
+    ]
+  },
+  {
+    "question": "Which JavaScript keyword is used to create a variable?",
+    "answers": [
+      { "text": "let", "correct": true },
+      { "text": "button", "correct": false },
+      { "text": "style", "correct": false }
+    ]
+  },
+  {
+    "question": "Which method is used to select an element by ID?",
+    "answers": [
+      { "text": "document.getElementById()", "correct": true },
+      { "text": "document.makeElement()", "correct": false },
+      { "text": "document.styleElement()", "correct": false }
+    ]
+  }
+]

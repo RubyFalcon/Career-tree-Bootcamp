@@ -1,48 +1,16 @@
 // Dummy questions
-const questions = [
-            {
-                question: "What does HTML stand for?",
-                answers: [
-                    { text: "Hyper Text Markup Language", correct: true },
-                    { text: "Home Tool Markup Language", correct: false },
-                    { text: "High Tech Main Language", correct: false }
-                ]
-            },
-            {
-                question: "Which language is used to style webpages?",
-                answers: [
-                    { text: "CSS", correct: true },
-                    { text: "HTML", correct: false },
-                    { text: "Python", correct: false }
-                ]
-            },
-            {
-                question: "Which language adds interactivity to webpages?",
-                answers: [
-                    { text: "JavaScript", correct: true },
-                    { text: "CSS", correct: false },
-                    { text: "HTML", correct: false }
-                ]
-            },
-            {
-                question: "Which JavaScript keyword is used to create a variable?",
-                answers: [
-                    { text: "let", correct: true },
-                    { text: "button", correct: false },
-                    { text: "style", correct: false }
-                ]
-            },
-            {
-                question: "Which method is used to select an element by ID?",
-                answers: [
-                    { text: "document.getElementById()", correct: true },
-                    { text: "document.makeElement()", correct: false },
-                    { text: "document.styleElement()", correct: false }
-                ]
-            }
-        ];
+let questions = [];
 
-
+async function loadQuestions() {
+    try {
+        const response = await fetch("./questions.json")
+        questions = await response.json()
+        startQuiz()
+    } catch (error) {
+        questionEl.textContent = "Failed to load quiz questions."
+        console.log(error)
+    }
+}
 // DOM - Document Object Model
 // Elements
 const questionEl = document.querySelector("#question")
@@ -133,4 +101,4 @@ themeBtn.addEventListener("click", function() {
     document.body.classList.toggle("dark-mode")
 })
 
-startQuiz()
+loadQuestions()
