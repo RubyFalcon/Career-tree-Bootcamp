@@ -11,6 +11,7 @@ async function loadQuestions() {
     console.log(error);
   }
 }
+
 // DOM - Document Object Model
 // Elements
 const questionEl = document.querySelector("#question");
@@ -38,13 +39,19 @@ function startQuiz() {
   showQuestions();
 }
 
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5)
+}
+
 function showQuestions() {
   answerEl.innerHTML = "";
   feedbackEl.textContent = "";
   const currentQuestion = questions[questionIndex];
+  const shuffledAnswers = shuffleArray([...currentQuestion.answers])
   questionEl.textContent = currentQuestion.question;
   progressEl.textContent = `Question ${questionIndex + 1} of ${questions.length}`;
-  currentQuestion.answers.forEach((answer) => {
+
+  shuffledAnswers.forEach( answer => {
     const button = document.createElement("button");
     button.textContent = answer.text;
     button.classList.add("answer-btn");
@@ -56,6 +63,7 @@ function showQuestions() {
     answerEl.appendChild(button);
   });
 }
+
 function selectAnswer(event) {
   const selectedButton = event.target;
   const isCorrect = selectedButton.dataset.correct === "true";
